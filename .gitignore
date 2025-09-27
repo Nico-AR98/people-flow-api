@@ -1,0 +1,67 @@
+# Django project
+/media/
+/static/
+*.sqlite3
+
+# Python and others
+__pycache__
+*.pyc
+.DS_Store
+*.swp
+/venv/
+/tmp/
+/.vagrant/
+/Vagrantfile.local
+node_modules/
+/npm-debug.log
+/debug.log
+/.idea/
+/*.vscode/
+coverage
+.coverage
+.mysql_data
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.env
+.env.docker
+.vscode
+.vcscode
+
+
+# artifacts
+htmlcov/
+.pytest_cache
+coverage_report/
+mix-manifest.json
+
+/logs/*
+/_assets/
+
+urls.txt
+cert.pem
+key.pem
+
+.dev_reports/*
+
+# Website
+website/static
+
+# Store
+store/static
