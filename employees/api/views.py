@@ -1,6 +1,6 @@
 from rest_framework import generics
-from employees.models import Employee
-from employees.api.serializers import EmployeeSerializer
+from employees.models import Employee, JobPosition
+from employees.api.serializers import EmployeeSerializer, JobPositionSerializer
 
 
 class EmployeeCreate(generics.CreateAPIView):
@@ -29,3 +29,29 @@ class EmployeeUpdate(generics.UpdateAPIView):
 class EmployeeDelete(generics.DestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+
+class JobPositionCreate(generics.CreateAPIView):
+    queryset = JobPosition.objects.all()
+    serializer_class = JobPositionSerializer
+
+
+class JobPositionList(generics.ListAPIView):
+    queryset = JobPosition.objects.all()
+    serializer_class = JobPositionSerializer
+    ordering_fields = ['name', ]
+
+
+class JobPositionDetail(generics.RetrieveAPIView):
+    queryset = JobPosition.objects.all()
+    serializer_class = JobPositionSerializer
+
+
+class JobPositionUpdate(generics.UpdateAPIView):
+    queryset = JobPosition.objects.all()
+    serializer_class = JobPositionSerializer
+
+
+class JobPositionDelete(generics.DestroyAPIView):
+    queryset = JobPosition.objects.all()
+    serializer_class = JobPositionSerializer
