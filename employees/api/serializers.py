@@ -10,7 +10,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ['name', 'surname', 'email', 'job_position', 'salary', 'hire_date']
+        fields = ['id', 'name', 'surname', 'email', 'job_position', 'salary', 'hire_date']
 
 
 class JobPositionSerializer(serializers.ModelSerializer):
