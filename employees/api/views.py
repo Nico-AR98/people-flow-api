@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from django.db.models import Sum, Avg
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage
 from employees.models import Employee, JobPosition
@@ -19,6 +20,10 @@ class EmployeeList(generics.ListAPIView):
 
     def list(self, request):
         employees_qs = self.get_queryset().select_related('job_position').all().order_by('id')
+        salary_metrics = employees_qs.aggregate(
+            total_salary=Sum('salary'),
+            average_salary=Avg('salary')
+        )
 
         job_position = request.GET.get('job_position')
         if job_position:
@@ -51,6 +56,10 @@ class EmployeeList(generics.ListAPIView):
             'per_page': per_page,
             'has_next': page_obj.has_next(),
             'has_previous': page_obj.has_previous(),
+            'metrics': {
+                'total_salary': str(salary_metrics['total_salary']),
+                'average_salary': str(salary_metrics['average_salary']),
+            },
             'results': employee_data,
         }
 
