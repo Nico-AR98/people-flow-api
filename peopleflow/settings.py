@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_spectacular',
     'api',
     'employees',
 ]
@@ -72,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'peopleflow.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -102,6 +106,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'People Flow API',
+    'DESCRIPTION': '',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
