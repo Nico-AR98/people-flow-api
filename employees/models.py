@@ -15,7 +15,7 @@ class Employee(models.Model):
 
 
 class JobPosition(models.Model):
-    title = models.CharField(max_length=100, verbose_name=_('Title'))
+    title = models.CharField(unique=True, max_length=100, verbose_name=_('Title'))
     description = models.TextField(blank=True, null=True, verbose_name=_('Description'))
 
     def __str__(self):
