@@ -132,7 +132,10 @@ Requerimientos Adicionales Incluidos
 
     Paginación y Filtrado: Implementado en el endpoint de listado.
 
-    Métricas Salariales: El endpoint /api/employees/ devuelve el salario total y el salario promedio de los empleados filtrados.
+    Métricas Salariales: El endpoint /api/employees/ devuelve el salario total y el salario promedio de los empleados.
+
+    Administración de Job Position:
+    Al tratarse de un campo que será utilizado para filtrar empleados, se decidio declararlo como una clase con una relacion de uno a muchos con la clase Employee para asegurar la consistencia.
 
     Autenticación Simple (JWT): Implementado con djangorestframework-simplejwt usando email como campo de autenticación.
 

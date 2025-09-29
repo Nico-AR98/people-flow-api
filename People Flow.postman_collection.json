@@ -1,0 +1,577 @@
+{
+	"info": {
+		"_postman_id": "b7fa439f-d1bf-4e58-a102-5b153774cb76",
+		"name": "People Flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17994731"
+	},
+	"item": [
+		{
+			"name": "LIst Employees",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/employees/?job_position=contador&per_page=1&page=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						""
+					],
+					"query": [
+						{
+							"key": "job_position",
+							"value": "contador"
+						},
+						{
+							"key": "per_page",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detail employee",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/employees/{{employee_id}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"{{employee_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"const employee_id = jsonData.id;",
+							"pm.collectionVariables.set(\"employee_id\", employee_id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Emanuel",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Garcia",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "mail6@example.com",
+							"type": "text"
+						},
+						{
+							"key": "job_position",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "870000",
+							"type": "text"
+						},
+						{
+							"key": "hire_date",
+							"value": "1999-04-30",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/employees/create/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit employee",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Carlos",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Aguirre",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "mail@example1.com",
+							"type": "text"
+						},
+						{
+							"key": "job_position",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "850000",
+							"type": "text"
+						},
+						{
+							"key": "hire_date",
+							"value": "1998-02-27",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/employees/{{employee_id}}/update/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"{{employee_id}}",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete employee",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/api/employees/{{employee_id}}/delete/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"{{employee_id}}",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List job position",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/employees/job-position/list/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"job-position",
+						"list",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create job position",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"const job_position_id = jsonData.id;",
+							"pm.collectionVariables.set(\"job_position_id\", job_position_id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Contador",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/employees/job-position/create/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"job-position",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detail job position",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/employees/job-position/{{job_position_id}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"job-position",
+						"{{job_position_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update job position",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "DevOps",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Software Developer (IT Department)",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/employees/job-position/{{job_position_id}}/update/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"job-position",
+						"{{job_position_id}}",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete job position",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/api/employees/job-position/{{job_position_id}}/delete/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"employees",
+						"job-position",
+						"{{job_position_id}}",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"const access_token = jsonData.access;",
+							"const refresh_token = jsonData.refresh;",
+							"pm.collectionVariables.set(\"access_token\", access_token);",
+							"pm.collectionVariables.set(\"access_refresh_token\", refresh_token);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "nico",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "aguirre456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/token/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		},
+		{
+			"key": "job_position_id",
+			"value": ""
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "access_refresh_token",
+			"value": ""
+		},
+		{
+			"key": "employee_id",
+			"value": ""
+		}
+	]
+}
