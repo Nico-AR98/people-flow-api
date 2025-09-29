@@ -3,18 +3,18 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage
 from employees.models import Employee, JobPosition
-from employees.api.serializers import EmployeeSerializer, JobPositionSerializer
+from employees.api.serializers import EmployeeCreateEditSerializer, EmployeeDetailSerializer, JobPositionSerializer
 
 
 class EmployeeCreate(generics.CreateAPIView):
     queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+    serializer_class = EmployeeCreateEditSerializer
     permission_classes = [IsAdminUser]
 
 
 class EmployeeList(generics.ListAPIView):
     queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+    serializer_class = EmployeeDetailSerializer
     permission_classes = [IsAdminUser]
 
     def list(self, request):
@@ -42,7 +42,7 @@ class EmployeeList(generics.ListAPIView):
         except Exception:
             page_obj = paginator.page(1)
 
-        employee_data = [EmployeeSerializer(employee).data for employee in page_obj]
+        employee_data = [EmployeeDetailSerializer(employee).data for employee in page_obj]
 
         response_data = {
             'count': employees_qs.count(),
@@ -59,19 +59,19 @@ class EmployeeList(generics.ListAPIView):
 
 class EmployeeDetail(generics.RetrieveAPIView):
     queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+    serializer_class = EmployeeDetailSerializer
     permission_classes = [IsAdminUser]
 
 
 class EmployeeUpdate(generics.UpdateAPIView):
     queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+    serializer_class = EmployeeCreateEditSerializer
     permission_classes = [IsAdminUser]
 
 
 class EmployeeDelete(generics.DestroyAPIView):
     queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+    serializer_class = EmployeeCreateEditSerializer
     permission_classes = [IsAdminUser]
 
 

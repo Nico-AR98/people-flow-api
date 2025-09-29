@@ -2,7 +2,13 @@ from rest_framework import serializers
 from employees.models import Employee, JobPosition
 
 
-class EmployeeSerializer(serializers.ModelSerializer):
+class EmployeeCreateEditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+
+
+class EmployeeDetailSerializer(serializers.ModelSerializer):
     job_position = serializers.SerializerMethodField('get_job_position')
 
     def get_job_position(self, obj):
