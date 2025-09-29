@@ -18,7 +18,11 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 env = environ.Env(
     DEBUG=(bool, False),
     BASE_URL=(str, 'http://not-defined'),
-    DJANGO_SECRET_KEY=(str, '12345')
+    DJANGO_SECRET_KEY=(str, '12345'),
+    SQL_USER=(str, 'root'),
+    SQL_PASSWORD=(str, '12345'),
+    SQL_DATABASE=(str, 'peopleflow_db'),
+    SQL_PORT=(str, '')
 )
 
 try:
@@ -98,10 +102,15 @@ REST_FRAMEWORK = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('SQL_DATABASE'),
+        'USER': env('SQL_USER'),
+        'PASSWORD': env('SQL_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': env('SQL_PORT'),
     }
 }
+
 
 
 # Password validation
